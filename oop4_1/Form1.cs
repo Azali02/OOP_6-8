@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Windows.Forms;
+using oop4_1.FactoryMethod;
+using oop4_1.Figures;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace oop4_1
@@ -11,6 +14,7 @@ namespace oop4_1
         private FigureType currentFigure;
 
         private List<Figure> figure = new List<Figure>();  //создаем список объектов
+        private string filename = "C:/Users/Азалия/source/repos/oop4_1/oop4_1/FactoryMethod/save_figures.txt";
 
         public Form1()
         {
@@ -32,12 +36,12 @@ namespace oop4_1
                     if (figure[i].DecoratorCheck())
                     {
                         figure.RemoveAt(i);
-                        continue;
                         count++;
+                        continue;
                     }
                     ++i;
                 }
-                if (figure.Count != 0 && count>0)
+                if (figure.Count != 0 && count > 0)
                 {
                     Figure decoratedFigure = new Decorator(figure.Last());
                     figure.RemoveAt(figure.Count - 1); // удалить последний элемент из списка
@@ -51,8 +55,7 @@ namespace oop4_1
                 {
                     if (f.DecoratorCheck())
                     {
-                        f.SizeUp(-1, pictureBox1.Width, pictureBox1.Height);
-
+                        f.SizeUp(-2, pictureBox1.Width, pictureBox1.Height);
                     }
                     Refresh();
                 }
@@ -63,8 +66,7 @@ namespace oop4_1
                 {
                     if (f.DecoratorCheck())
                     {
-                        f.SizeUp(1, pictureBox1.Width, pictureBox1.Height);
-
+                        f.SizeUp(2, pictureBox1.Width, pictureBox1.Height);
                     }
                 }
                 Refresh();
@@ -75,7 +77,7 @@ namespace oop4_1
                 {
                     if (f.DecoratorCheck())
                     {
-                        f.move(-1, 0, pictureBox1.Width, pictureBox1.Height);
+                        f.move(-2, 0, pictureBox1.Width, pictureBox1.Height);
                     }
                 }
                 Refresh();
@@ -86,7 +88,7 @@ namespace oop4_1
                 {
                     if (f.DecoratorCheck())
                     {
-                        f.move(1, 0, pictureBox1.Width, pictureBox1.Height);
+                        f.move(2, 0, pictureBox1.Width, pictureBox1.Height);
                     }
                 }
                 Refresh();
@@ -97,7 +99,7 @@ namespace oop4_1
                 {
                     if (f.DecoratorCheck())
                     {
-                        f.move(0, -1, pictureBox1.Width, pictureBox1.Height);
+                        f.move(0, -2, pictureBox1.Width, pictureBox1.Height);
                     }
                 }
                 Refresh();
@@ -108,7 +110,7 @@ namespace oop4_1
                 {
                     if (f.DecoratorCheck())
                     {
-                        f.move(0, 1, pictureBox1.Width, pictureBox1.Height);
+                        f.move(0, 2, pictureBox1.Width, pictureBox1.Height);
                     }
                 }
                 Refresh();
@@ -127,12 +129,6 @@ namespace oop4_1
             {
                 figure.Remove(figure[i]);
             }
-            if (figure.Count != 0)
-            {
-                Figure decoratedFigure = new Decorator(figure.Last());
-                figure.RemoveAt(figure.Count - 1); // удалить последний элемент из списка
-                figure.Add(decoratedFigure); // добавить декорированный объект в список
-            }
             Refresh();
         }
 
@@ -146,6 +142,10 @@ namespace oop4_1
                     if (figure[i] is Decorator decorator)
                     {
                         figure[i] = decorator.GetOriginalFigure();
+                    }
+                    else if (figure[i].DecoratorCheck()) //выделенная группа
+                    {
+                        figure[i].UndecoratedGroup();
                     }
                 }
                 switch (currentFigure)
@@ -196,16 +196,45 @@ namespace oop4_1
         private void rbCircle_CheckedChanged(object sender, EventArgs e)
         {
             currentFigure = FigureType.Circle;
+            Refresh();
         }
 
         private void rbSquare_CheckedChanged(object sender, EventArgs e)
         {
             currentFigure = FigureType.Square;
+            //for (int i = 0; i < figure.Count; i++)
+            //{
+            //    if (figure[i] is Decorator decorator)
+            //    {
+            //        Figure originalFigure = decorator.GetOriginalFigure();
+            //        Figure newFigure = new Square(originalFigure.x, originalFigure.y);
+            //        newFigure.SetColor(originalFigure.GetColor());
+            //        newFigure.a = originalFigure.a;
+            //        Figure decC = new Decorator(newFigure);
+            //        figure.Insert(i, decC);
+            //        figure.RemoveAt(i + 1);
+            //    }
+            //}
+            Refresh();
         }
 
         private void rbTriangle_CheckedChanged(object sender, EventArgs e)
         {
             currentFigure = FigureType.Triangle;
+            //for (int i = 0; i < figure.Count; i++)
+            //{
+            //    if (figure[i] is Decorator decorator)
+            //    {
+            //        Figure originalFigure = decorator.GetOriginalFigure();
+            //        Figure newFigure = new Triangle(originalFigure.x, originalFigure.y);
+            //        newFigure.SetColor(originalFigure.GetColor());
+            //        newFigure.a = originalFigure.a;
+            //        Figure decC = new Decorator(newFigure);
+            //        figure.Insert(i, decC);
+            //        figure.RemoveAt(i + 1);
+            //    }
+            //}
+            Refresh();
         }
 
         private void cbColor_SelectedIndexChanged(object sender, EventArgs e)
@@ -239,8 +268,8 @@ namespace oop4_1
                 if (figure[i].DecoratorCheck())
                 {
                     figure.RemoveAt(i);
-                    continue;
                     count++;
+                    continue;
                 }
                 ++i;
             }
@@ -261,8 +290,81 @@ namespace oop4_1
                 {
                     figure[i] = decorator.GetOriginalFigure();
                 }
+                else if (figure[i].DecoratorCheck() == true) //выделенная группа
+                {
+                    figure[i].UndecoratedGroup();
+                }
             }
             Refresh();
+        }
+
+        private void btnGroup_Click(object sender, EventArgs e) //группировка
+        {
+            int k = 0;
+            for (int i = 0; i < figure.Count; i++)
+            {
+                if (figure[i].DecoratorCheck())
+                {
+                    k++;
+                }
+            }
+            if (k > 1)
+            {
+                var gGroup = new GGroup();
+                for (int i = 0; i < figure.Count;)
+                {
+                    if (figure[i].DecoratorCheck())
+                    {
+                        gGroup.Add(figure[i]);
+                        figure.Remove(figure[i]);
+                    }
+                    else i++;
+                }
+                figure.Add(gGroup);
+                Refresh();
+            }
+
+        }
+
+        private void btnUngroup_Click(object sender, EventArgs e) //разгруппировка
+        {
+            for (int i = 0; i < figure.Count;)
+            {
+                if (figure[i] is Decorator decorator)
+                {
+                    if (decorator.GetOriginalFigure() is GGroup gGroup)
+                    {
+                        while (gGroup.Count() > 1)
+                        {
+                            figure.Add(gGroup.GetOriginalFigure());
+                            gGroup.RemoveAt();
+                        }
+                        figure.Add(gGroup.GetOriginalFigure());
+                        figure.Remove(figure[i]);
+                    }
+                }
+                ++i;
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e) //выгрузка из файла
+        {
+            Method factory = new Method(); // create a new factory method object
+            ShapeArray array = new ShapeArray(); // create a new shape array object
+            array.LoadShapes(filename, factory, figure); // call the LoadShapes method with the initialized objects and figure list
+            Refresh();
+        }
+
+        private void button2_Click(object sender, EventArgs e) //сохранение в файл
+        {
+            SaveArray array = new SaveArray();
+            array.save(figure, filename);
+        }
+
+        private void btnLine_Click(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

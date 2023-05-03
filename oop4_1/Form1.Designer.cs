@@ -38,6 +38,11 @@
             cbColor = new ComboBox();
             btn_notSelection = new Button();
             button_dlt = new Button();
+            btnGroup = new Button();
+            btnUngroup = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            btnLine = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -66,9 +71,9 @@
             chb_flag.AutoSize = true;
             chb_flag.Location = new Point(12, 70);
             chb_flag.Name = "chb_flag";
-            chb_flag.Size = new Size(369, 24);
+            chb_flag.Size = new Size(242, 24);
             chb_flag.TabIndex = 2;
-            chb_flag.Text = "Выделять несколько объектов при пересечении";
+            chb_flag.Text = "Выделять несколько объектов";
             chb_flag.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
@@ -86,7 +91,7 @@
             // rbTriangle
             // 
             rbTriangle.AutoSize = true;
-            rbTriangle.Location = new Point(544, 72);
+            rbTriangle.Location = new Point(562, 72);
             rbTriangle.Name = "rbTriangle";
             rbTriangle.Size = new Size(83, 24);
             rbTriangle.TabIndex = 4;
@@ -97,7 +102,7 @@
             // rbSquare
             // 
             rbSquare.AutoSize = true;
-            rbSquare.Location = new Point(544, 42);
+            rbSquare.Location = new Point(562, 42);
             rbSquare.Name = "rbSquare";
             rbSquare.Size = new Size(76, 24);
             rbSquare.TabIndex = 5;
@@ -109,7 +114,7 @@
             // 
             rbCircle.AutoSize = true;
             rbCircle.Checked = true;
-            rbCircle.Location = new Point(544, 12);
+            rbCircle.Location = new Point(562, 12);
             rbCircle.Name = "rbCircle";
             rbCircle.Size = new Size(67, 24);
             rbCircle.TabIndex = 6;
@@ -125,7 +130,7 @@
             cbColor.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             cbColor.FormattingEnabled = true;
             cbColor.Items.AddRange(new object[] { "Black", "Blue", "Green", "Yellow", "Red" });
-            cbColor.Location = new Point(387, 12);
+            cbColor.Location = new Point(462, 12);
             cbColor.Name = "cbColor";
             cbColor.Size = new Size(94, 33);
             cbColor.TabIndex = 7;
@@ -152,12 +157,67 @@
             button_dlt.UseVisualStyleBackColor = true;
             button_dlt.Click += button_dlt_Click;
             // 
+            // btnGroup
+            // 
+            btnGroup.Location = new Point(648, 12);
+            btnGroup.Name = "btnGroup";
+            btnGroup.Size = new Size(124, 33);
+            btnGroup.TabIndex = 10;
+            btnGroup.Text = "Сгруппировать";
+            btnGroup.UseVisualStyleBackColor = true;
+            btnGroup.Click += btnGroup_Click;
+            // 
+            // btnUngroup
+            // 
+            btnUngroup.Location = new Point(648, 51);
+            btnUngroup.Name = "btnUngroup";
+            btnUngroup.Size = new Size(124, 29);
+            btnUngroup.TabIndex = 11;
+            btnUngroup.Text = "Разгруппировать";
+            btnUngroup.UseVisualStyleBackColor = true;
+            btnUngroup.Click += btnUngroup_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(388, 67);
+            button1.Name = "button1";
+            button1.Size = new Size(81, 29);
+            button1.TabIndex = 12;
+            button1.Text = "из файла";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(475, 67);
+            button2.Name = "button2";
+            button2.Size = new Size(81, 29);
+            button2.TabIndex = 13;
+            button2.Text = "save";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // btnLine
+            // 
+            btnLine.Location = new Point(287, 67);
+            btnLine.Name = "btnLine";
+            btnLine.Size = new Size(94, 29);
+            btnLine.TabIndex = 14;
+            btnLine.Text = "Стрелка";
+            btnLine.UseVisualStyleBackColor = true;
+            btnLine.Click += btnLine_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AntiqueWhite;
             ClientSize = new Size(782, 453);
+            Controls.Add(btnLine);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(btnUngroup);
+            Controls.Add(btnGroup);
             Controls.Add(button_dlt);
             Controls.Add(btn_notSelection);
             Controls.Add(cbColor);
@@ -191,5 +251,10 @@
         private ComboBox cbColor;
         private Button btn_notSelection;
         private Button button_dlt;
+        private Button btnGroup;
+        private Button btnUngroup;
+        private Button button1;
+        private Button button2;
+        private Button btnLine;
     }
 }

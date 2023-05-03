@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Азалия\\source\\repos\\oop4_1\\oop4_1\\oop4_1.csproj": {}
+    "C:\\Users\\Азалия\\Desktop\\oop4_1\\oop4_1\\oop4_1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Азалия\\source\\repos\\oop4_1\\oop4_1\\oop4_1.csproj": {
+    "C:\\Users\\Азалия\\Desktop\\oop4_1\\oop4_1\\oop4_1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Азалия\\source\\repos\\oop4_1\\oop4_1\\oop4_1.csproj",
+        "projectUniqueName": "C:\\Users\\Азалия\\Desktop\\oop4_1\\oop4_1\\oop4_1.csproj",
         "projectName": "oop4_1",
-        "projectPath": "C:\\Users\\Азалия\\source\\repos\\oop4_1\\oop4_1\\oop4_1.csproj",
+        "projectPath": "C:\\Users\\Азалия\\Desktop\\oop4_1\\oop4_1\\oop4_1.csproj",
         "packagesPath": "C:\\Users\\Азалия\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Азалия\\source\\repos\\oop4_1\\oop4_1\\obj\\",
+        "outputPath": "C:\\Users\\Азалия\\Desktop\\oop4_1\\oop4_1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
